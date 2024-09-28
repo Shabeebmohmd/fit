@@ -1,36 +1,33 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/db/workout_data_handler.dart';
+import 'package:fit/db/db_functions.dart';
+import 'package:fit/models/category_model.dart';
 import 'package:fit/models/workout_model.dart';
-import 'package:fit/screens/training/beginner/beginner_workout_details.dart';
+import 'package:fit/screens/training/workout_details.dart';
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
-class Beginner extends StatefulWidget {
-  const Beginner({super.key});
+class WorkoutScreen extends StatefulWidget {
+  final CategoryModel categoryModel;
+  const WorkoutScreen({super.key, required this.categoryModel});
 
   @override
-  State<Beginner> createState() => _BeginnerState();
+  State<WorkoutScreen> createState() => _WorkoutScreenState();
 }
 
-class _BeginnerState extends State<Beginner> {
+class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   void initState() {
     super.initState();
-    getAllWorkouts();
+    loadWorkouts(widget.categoryModel.boxName);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'BEGINNER',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: ValueListenableBuilder(
-          valueListenable: workoutsNotifier,
+      appBar: CustomAppBar(title: widget.categoryModel.categoryName),
+      body: ValueListenableBuilder<List<WorkoutModel>>(
+          valueListenable: workoutNotifiers[widget.categoryModel.boxName]!,
           builder: (context, List<WorkoutModel> workout, _) {
             if (workout.isEmpty) {
               return const Center(
@@ -46,7 +43,7 @@ class _BeginnerState extends State<Beginner> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BeginnerWorkoutDetails(
+                              builder: (context) => WorkoutDetails(
                                     workoutIndex: index,
                                     model: workouts,
                                   )));

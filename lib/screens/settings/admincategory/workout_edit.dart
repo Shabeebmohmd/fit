@@ -1,23 +1,26 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/db/workout_data_handler.dart';
+import 'package:fit/db/db_functions.dart';
+import 'package:fit/models/category_model.dart';
 import 'package:fit/models/workout_model.dart';
 import 'package:flutter/material.dart';
 
-class BeginnerEdit extends StatefulWidget {
-  final int workoutIndex; // Index of the workout to be edited
-  final WorkoutModel workout; // Existing workout data
+class WorkoutEdit extends StatefulWidget {
+  final int workoutIndex;
+  final CategoryModel categoryModel;
+  final WorkoutModel workoutModel;
 
-  const BeginnerEdit({
+  const WorkoutEdit({
     super.key,
     required this.workoutIndex,
-    required this.workout,
+    required this.categoryModel,
+    required this.workoutModel,
   });
 
   @override
-  State<BeginnerEdit> createState() => _BeginnerEditState();
+  State<WorkoutEdit> createState() => _WorkoutEditState();
 }
 
-class _BeginnerEditState extends State<BeginnerEdit> {
+class _WorkoutEditState extends State<WorkoutEdit> {
   late TextEditingController _workoutNameController;
   late TextEditingController _urlController;
   late TextEditingController _descriptionController;
@@ -31,12 +34,12 @@ class _BeginnerEditState extends State<BeginnerEdit> {
 
   void _initializeControllers() {
     _workoutNameController =
-        TextEditingController(text: widget.workout.workoutName);
-    _urlController = TextEditingController(text: widget.workout.url);
+        TextEditingController(text: widget.workoutModel.workoutName);
+    _urlController = TextEditingController(text: widget.workoutModel.url);
     _descriptionController =
-        TextEditingController(text: widget.workout.description);
+        TextEditingController(text: widget.workoutModel.description);
     _durationController =
-        TextEditingController(text: widget.workout.duration.toString());
+        TextEditingController(text: widget.workoutModel.duration.toString());
   }
 
   @override
@@ -61,7 +64,9 @@ class _BeginnerEditState extends State<BeginnerEdit> {
         duration: double.tryParse(_durationController.text) ?? 0.0,
       );
 
-      await editWorkout(widget.workoutIndex, updatedWorkout);
+      await updateWorkout(
+          widget.categoryModel.boxName, widget.workoutIndex, updatedWorkout);
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } else {
       _showErrorSnackBar('Please fill all fields');

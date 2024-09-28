@@ -1,6 +1,7 @@
+import 'package:fit/models/category_model.dart';
 import 'package:fit/models/data_models.dart';
 import 'package:fit/models/workout_model.dart';
-import 'package:fit/screens/mainscreens/splashscreen.dart';
+import 'package:fit/screens/mainscreens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -9,8 +10,9 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserDataAdapter());
   Hive.registerAdapter(WorkoutModelAdapter());
+  Hive.registerAdapter(CategoryModelAdapter());
+  await Hive.openBox<CategoryModel>('category');
   await Hive.openBox<UserData>('userData');
-  await Hive.openBox<WorkoutModel>('workoutData');
   runApp(const MyApp());
 }
 

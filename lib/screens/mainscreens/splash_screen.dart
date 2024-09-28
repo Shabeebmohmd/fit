@@ -1,6 +1,6 @@
 import 'package:fit/models/data_models.dart';
-import 'package:fit/screens/mainscreens/homescreen.dart';
-import 'package:fit/screens/mainscreens/onboarding.dart';
+import 'package:fit/screens/mainscreens/home_screen.dart';
+import 'package:fit/screens/mainscreens/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

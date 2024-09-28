@@ -1,6 +1,6 @@
 import 'package:fit/db/user_data_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:fit/screens/mainscreens/homescreen.dart';
+import 'package:fit/screens/mainscreens/home_screen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});

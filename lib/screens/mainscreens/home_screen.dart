@@ -1,8 +1,8 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/screens/bmi/bmiscreen.dart';
-import 'package:fit/screens/mainscreens/reportscreen.dart';
-import 'package:fit/screens/settings/settingsscreen.dart';
-import 'package:fit/screens/mainscreens/trainingscreen.dart';
+import 'package:fit/screens/bmi/bmi_screen.dart';
+import 'package:fit/screens/mainscreens/full_body_screen.dart';
+import 'package:fit/screens/mainscreens/report_screen.dart';
+import 'package:fit/screens/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -17,7 +17,7 @@ class _HomescreenState extends State<Homescreen> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Trainingscreen(),
+    Fullbodyscreen(),
     Reoprtscreen(),
     Bmiscreen(),
     Settingsscreen(),

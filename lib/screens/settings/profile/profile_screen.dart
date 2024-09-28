@@ -1,7 +1,7 @@
 import 'package:fit/color/colors.dart';
 import 'package:fit/db/user_data_handler.dart';
 import 'package:fit/models/data_models.dart';
-import 'package:fit/screens/settings/profile/editprofile.dart';
+import 'package:fit/screens/settings/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {

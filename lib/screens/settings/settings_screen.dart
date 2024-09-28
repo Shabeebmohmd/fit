@@ -1,7 +1,7 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/screens/settings/aboutscreen.dart';
-import 'package:fit/screens/settings/loginscreen.dart';
-import 'package:fit/screens/settings/profile/profilescreen.dart';
+import 'package:fit/screens/settings/about_screen.dart';
+import 'package:fit/screens/settings/admincategory/admin_screen_2.dart';
+import 'package:fit/screens/settings/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class Settingsscreen extends StatefulWidget {
@@ -15,7 +15,8 @@ class _SettingsscreenState extends State<Settingsscreen> {
   _listTile(
       {required String title,
       required String iconPath,
-      required VoidCallback onTap}) {
+      required VoidCallback onTap,
+      bool showDivider = true}) {
     return Column(
       children: [
         ListTile(
@@ -24,7 +25,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
           onTap: onTap,
         ),
-        const Divider(),
+        if (showDivider) const Divider(),
       ],
     );
   }
@@ -60,7 +61,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const Loginscreen()));
+                                          const AdminScreen2()));
                             },
                             child: const Text(
                               'Confirm',
@@ -100,6 +101,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
                 _listTile(
                     title: 'About us',
                     iconPath: 'assets/icons/information.png',
+                    showDivider: false,
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(

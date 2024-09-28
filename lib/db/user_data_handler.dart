@@ -28,5 +28,4 @@ Future<void> editUserData(UserData updatedUser) async {
   final box = await Hive.openBox<UserData>('userData');
   await box.put('user', updatedUser);
   userNotifier.value = updatedUser;
-  userNotifier.notifyListeners();
 }
