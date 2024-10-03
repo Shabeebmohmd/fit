@@ -1,9 +1,10 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/screens/training/training_screen.dart';
+import 'package:fit/db/db_functions.dart';
+import 'package:fit/screens/training/category_screen.dart';
 import 'package:flutter/material.dart';
 
-class Fullbodyscreen extends StatelessWidget {
-  const Fullbodyscreen({super.key});
+class Trainingscreen extends StatelessWidget {
+  const Trainingscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +83,13 @@ class Fullbodyscreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 12),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+                        await loadCategories();
                         Navigator.push(
+                            // ignore: use_build_context_synchronously
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const TrainingScreen()));
+                                builder: (context) => const CategoryScreen()));
                       },
                       child: const Text(
                         'Start',

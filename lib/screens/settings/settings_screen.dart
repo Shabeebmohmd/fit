@@ -1,6 +1,6 @@
 import 'package:fit/color/colors.dart';
 import 'package:fit/screens/settings/about_screen.dart';
-import 'package:fit/screens/settings/admincategory/admin_screen_2.dart';
+import 'package:fit/screens/settings/admincategory/admin_categories_screen.dart';
 import 'package:fit/screens/settings/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +61,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const AdminScreen2()));
+                                          const AdminCategoriesScreen()));
                             },
                             child: const Text(
                               'Confirm',

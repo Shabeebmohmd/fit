@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fit/db/db_functions.dart';
+import 'package:fit/models/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
-  final String categoryname;
+  final CategoryModel category;
+  final Function onFavoriteToggle;
 
   const CategoryCard({
     super.key,
-    required this.categoryname,
+    required this.category,
+    required this.onFavoriteToggle,
   });
 
   @override
@@ -32,7 +36,7 @@ class CategoryCard extends StatelessWidget {
             bottom: 20,
             left: 20,
             child: Text(
-              categoryname,
+              category.categoryName,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -44,9 +48,13 @@ class CategoryCard extends StatelessWidget {
               bottom: 20,
               right: 20,
               child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_border,
+                  onPressed: () {
+                    onFavoriteToggle();
+                  },
+                  icon: Icon(
+                    category.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
                     color: Colors.red,
                     size: 35,
                   )))

@@ -74,16 +74,6 @@ class _AddCategoryState extends State<AddCategory> {
                 key: _formKey1,
                 child: Column(
                   children: [
-                    // _inputField(
-                    //   labelText: 'ID',
-                    //   onSaved: (value) => categoryname = value!,
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //        return 'Please enter category ID';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
                     const SizedBox(height: 30),
                     _inputField(
                       labelText: 'Category',

@@ -1,4 +1,3 @@
-import 'package:fit/color/colors.dart';
 import 'package:fit/models/workout_model.dart';
 import 'package:flutter/material.dart';
 

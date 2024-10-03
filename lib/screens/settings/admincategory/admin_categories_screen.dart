@@ -7,14 +7,14 @@ import 'package:fit/widgets/category_admin_template.dart';
 import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
-class AdminScreen2 extends StatefulWidget {
-  const AdminScreen2({super.key});
+class AdminCategoriesScreen extends StatefulWidget {
+  const AdminCategoriesScreen({super.key});
 
   @override
-  State<AdminScreen2> createState() => _AdminScreen2State();
+  State<AdminCategoriesScreen> createState() => _AdminCategoriesScreenState();
 }
 
-class _AdminScreen2State extends State<AdminScreen2> {
+class _AdminCategoriesScreenState extends State<AdminCategoriesScreen> {
   @override
   void initState() {
     super.initState();

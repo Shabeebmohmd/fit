@@ -8,11 +8,13 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class WorkoutDetails extends StatefulWidget {
   final int workoutIndex;
   final WorkoutModel model;
+  final List<WorkoutModel> workouts; // Add list of workouts
 
   const WorkoutDetails({
     super.key,
     required this.model,
     required this.workoutIndex,
+    required this.workouts, // Pass list of workouts
   });
 
   @override
@@ -32,6 +34,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     _initializeYoutubeController();
     time = widget.model.duration.toInt();
     totalTime = time;
+    startTimer(); // Automatically start the timer
   }
 
   void _initializeYoutubeController() {
@@ -60,6 +63,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
           time--;
         } else {
           timer.cancel();
+          _loadNextWorkout(); // Automatically load the next workout when time ends
         }
       });
     });
@@ -83,6 +87,32 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     });
   }
 
+  // Logic to get the next workout
+  void _loadNextWorkout() {
+    if (widget.workoutIndex < widget.workouts.length - 1) {
+      // If there are more workouts, go to the next workout
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WorkoutDetails(
+            workoutIndex: widget.workoutIndex + 1,
+            model: widget.workouts[widget.workoutIndex + 1],
+            workouts: widget.workouts,
+          ),
+        ),
+      );
+    } else {
+      // No more workouts, go back to the workout screen or finish
+      Navigator.pop(context);
+    }
+  }
+
+  // Manually skip to the next workout
+  void _skipWorkout() {
+    _timer?.cancel();
+    _loadNextWorkout();
+  }
+
   double get progress {
     return 1 - (time / totalTime);
   }
@@ -90,15 +120,18 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colorss.backgroundColor,
       appBar: _buildAppBar(),
       body: Center(
         child: Column(
           children: [
             _buildYoutubePlayer(),
-            const SizedBox(height: 70),
+            const SizedBox(height: 50),
             _buildProgressIndicator(),
-            const SizedBox(height: 70),
+            const SizedBox(height: 50),
             _buildTimerButtons(),
+            const SizedBox(height: 20),
+            _buildSkipButton(), // Add skip button
           ],
         ),
       ),
@@ -159,7 +192,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
           child: CircularProgressIndicator(
             value: progress,
             strokeWidth: 10,
-            backgroundColor: Colors.grey[300],
+            backgroundColor: Colors.white,
             valueColor:
                 const AlwaysStoppedAnimation<Color>(Colorss.buttonColor),
           ),
@@ -210,6 +243,17 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
       child: Text(
         label,
         style: const TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _buildSkipButton() {
+    return MaterialButton(
+      onPressed: _skipWorkout, // Skip to the next workout
+      color: Colors.blue,
+      child: const Text(
+        'SKIP',
+        style: TextStyle(color: Colors.white),
       ),
     );
   }
