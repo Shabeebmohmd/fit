@@ -10,11 +10,14 @@ class CategoryModel {
   String boxName;
 
   @HiveField(2)
-  bool isFavorite; // New field to track favorites
+  bool isFavorite;
 
-  CategoryModel({
-    required this.boxName,
-    required this.categoryName,
-    this.isFavorite = false, // Default is false
-  });
+  @HiveField(3)
+  String? imagePath;
+
+  CategoryModel(
+      {required this.boxName,
+      required this.categoryName,
+      this.isFavorite = false,
+      this.imagePath});
 }

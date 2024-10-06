@@ -1,8 +1,8 @@
 import 'package:fit/color/colors.dart';
 import 'package:fit/db/db_functions.dart';
 import 'package:fit/models/category_model.dart';
-import 'package:fit/screens/settings/admincategory/add_category.dart';
-import 'package:fit/screens/settings/admincategory/workout_list.dart';
+import 'package:fit/screens/settings/admin/category/add_category.dart';
+import 'package:fit/screens/settings/admin/category/workouts/workout_list.dart';
 import 'package:fit/widgets/category_admin_template.dart';
 import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _AdminCategoriesScreenState extends State<AdminCategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
-      appBar: const CustomAppBar(title: 'ADMIN PANEL'),
+      appBar: const CustomAppBar(title: 'CATEGORIES'),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,

@@ -1,6 +1,7 @@
 import 'package:fit/color/colors.dart';
 import 'package:fit/db/db_functions.dart';
 import 'package:fit/screens/training/category_screen.dart';
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class Trainingscreen extends StatelessWidget {
@@ -10,12 +11,7 @@ class Trainingscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(
-        title: const Text(
-          'TRAINING',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: const CustomAppBar(title: 'TRAINING'),
       body: SafeArea(
         child: Center(
           child: Card(

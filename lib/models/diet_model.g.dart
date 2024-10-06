@@ -1,41 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category_model.dart';
+part of 'diet_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
+class DietPlanAdapter extends TypeAdapter<DietPlan> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  CategoryModel read(BinaryReader reader) {
+  DietPlan read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CategoryModel(
-      boxName: fields[1] as String,
-      categoryName: fields[0] as String,
-      isFavorite: fields[2] as bool,
-      imagePath: fields[3] as String?,
+    return DietPlan(
+      headline: fields[0] as String,
+      details: fields[1] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, CategoryModel obj) {
+  void write(BinaryWriter writer, DietPlan obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.categoryName)
-      ..writeByte(1)
-      ..write(obj.boxName)
       ..writeByte(2)
-      ..write(obj.isFavorite)
-      ..writeByte(3)
-      ..write(obj.imagePath);
+      ..writeByte(0)
+      ..write(obj.headline)
+      ..writeByte(1)
+      ..write(obj.details);
   }
 
   @override
@@ -44,7 +38,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CategoryModelAdapter &&
+      other is DietPlanAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

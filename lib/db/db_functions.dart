@@ -17,7 +17,6 @@ Future<void> addCategory(String categoryName) async {
   await categoryBox.add(newCategory);
   categoryNotifier.value = categoryBox.values.toList();
 
-  // Open a new box for workouts
   await Hive.openBox<WorkoutModel>(boxName);
   workoutNotifiers[boxName] = ValueNotifier([]);
 }
@@ -38,11 +37,8 @@ Future<void> addWorkout(String boxName, String workoutName, String url,
 
 Future<void> deleteCategory(CategoryModel category) async {
   var categoryBox = Hive.box<CategoryModel>('category');
-
-  // Delete the workout box associated with this category
   await Hive.deleteBoxFromDisk(category.boxName);
 
-  // Find the key of the category in the box and delete it
   int? keyToDelete;
   for (var entry in categoryBox.toMap().entries) {
     if (entry.value == category) {
@@ -54,15 +50,12 @@ Future<void> deleteCategory(CategoryModel category) async {
   if (keyToDelete != null) {
     await categoryBox.delete(keyToDelete);
   }
-
-  // Update the category list in the UI
   categoryNotifier.value = categoryBox.values.toList();
 }
 
 Future<void> deleteWorkout(String boxName, WorkoutModel workout) async {
   var workoutBox = Hive.box<WorkoutModel>(boxName);
 
-  // Find the key of the workout to delete
   int? keyToDelete;
   for (var entry in workoutBox.toMap().entries) {
     if (entry.value == workout) {
@@ -84,19 +77,13 @@ Future<void> loadCategories() async {
 }
 
 Future<void> loadWorkouts(String boxName) async {
-  // Open the Hive box for the workout models if not already opened
   if (!Hive.isBoxOpen(boxName)) {
     await Hive.openBox<WorkoutModel>(boxName);
   }
-
   final workoutBox = Hive.box<WorkoutModel>(boxName);
-
-  // Check if workoutNotifiers[boxName] is null and initialize if needed
   if (workoutNotifiers[boxName] == null) {
     workoutNotifiers[boxName] = ValueNotifier<List<WorkoutModel>>([]);
   }
-
-  // Immediately update the workouts list
   workoutNotifiers[boxName]?.value = List<WorkoutModel>.from(workoutBox.values);
 
   log('Loaded workouts for $boxName');

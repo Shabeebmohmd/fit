@@ -1,3 +1,5 @@
+import 'package:fit/screens/bmi/diet_plan_screen.dart';
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class Bmiscreen extends StatefulWidget {
@@ -18,12 +20,7 @@ class _BmiscreenState extends State<Bmiscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 199, 205, 235),
-      appBar: AppBar(
-        title: const Text(
-          'BMI CALCULATOR',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: const CustomAppBar(title: 'BMI CALCULATOR'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 100),
@@ -71,7 +68,9 @@ class _BmiscreenState extends State<Bmiscreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: result(),
-              )
+              ),
+              const SizedBox(height: 20),
+              _dietPlanButton(context),
             ],
           ),
         ),
@@ -228,6 +227,34 @@ class _BmiscreenState extends State<Bmiscreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  SizedBox _dietPlanButton(BuildContext context) {
+    return SizedBox(
+      width: 330,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: _bmiCategory.isNotEmpty
+            ? () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DietPlanScreen(bmicategory: _bmiCategory)),
+                );
+              }
+            : null,
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.amber,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
+            foregroundColor: Colors.white),
+        child: const Text(
+          'View Diet Plan',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }

@@ -1,7 +1,10 @@
 import 'package:fit/color/colors.dart';
-import 'package:fit/screens/settings/about_screen.dart';
-import 'package:fit/screens/settings/admincategory/admin_categories_screen.dart';
+import 'package:fit/screens/settings/settings_screens/about_screen.dart';
+import 'package:fit/screens/settings/admin/admin_screen.dart';
 import 'package:fit/screens/settings/profile/profile_screen.dart';
+import 'package:fit/screens/settings/settings_screens/privacy_screen.dart';
+import 'package:fit/screens/settings/settings_screens/terms_coditions.dart';
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class Settingsscreen extends StatefulWidget {
@@ -34,50 +37,10 @@ class _SettingsscreenState extends State<Settingsscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(
-        title: const Text('SETTINGS',
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        actions: [
-          InkWell(
-            onTap: () => showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                      title: const Text("'LOG IN!'"),
-                      content: const Text('Are you sure you want to Login'),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text(
-                              'Cancel',
-                              style: TextStyle(color: Colors.red, fontSize: 20),
-                            )),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AdminCategoriesScreen()));
-                            },
-                            child: const Text(
-                              'Confirm',
-                              style:
-                                  TextStyle(color: Colors.blue, fontSize: 20),
-                            ))
-                      ]);
-                }),
-            child: Image.asset('assets/icons/administrator.png', height: 30),
-          ),
-          const SizedBox(width: 20),
-        ],
-      ),
+      appBar: const CustomAppBar(title: 'SETTINGS'),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             decoration: BoxDecoration(
@@ -89,23 +52,70 @@ class _SettingsscreenState extends State<Settingsscreen> {
               children: [
                 _listTile(
                   title: 'Profile',
-                  iconPath: 'assets/icons/user.png',
+                  iconPath: 'assets/icons/profile.png',
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Profile())),
                 ),
                 _listTile(
-                  title: 'Notifications',
-                  iconPath: 'assets/icons/notifications.png',
-                  onTap: () {},
+                  title: 'Admin Panel',
+                  iconPath: 'assets/icons/user.png',
+                  onTap: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            title: const Text("'LOG IN!'"),
+                            content:
+                                const Text('Are you sure you want to Login'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 20),
+                                  )),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AdminScreen()));
+                                  },
+                                  child: const Text(
+                                    'Confirm',
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ))
+                            ]);
+                      }),
                 ),
                 _listTile(
                     title: 'About us',
                     iconPath: 'assets/icons/information.png',
-                    showDivider: false,
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Aboutscreen())))
+                            builder: (context) => const Aboutscreen()))),
+                _listTile(
+                    title: 'Privacy & policy',
+                    iconPath: 'assets/icons/privacy.png',
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PrivacyScreen()))),
+                _listTile(
+                  title: 'Terms & conditions',
+                  iconPath: 'assets/icons/terms-and-conditions.png',
+                  showDivider: false,
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TermsCoditions())),
+                )
               ],
             ),
           ),

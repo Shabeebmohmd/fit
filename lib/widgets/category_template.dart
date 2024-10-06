@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fit/db/db_functions.dart';
 import 'package:fit/models/category_model.dart';
+import 'dart:io'; // Import for File
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
@@ -25,12 +25,19 @@ class CategoryCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(17),
-            child: Image.asset(
-              'assets/images/fullbody.jpeg',
-              fit: BoxFit.cover,
-              width: 370,
-              height: 150,
-            ),
+            child: category.imagePath != null && category.imagePath!.isNotEmpty
+                ? Image.file(
+                    File(category.imagePath!),
+                    fit: BoxFit.cover,
+                    width: 370,
+                    height: 150,
+                  )
+                : Image.asset(
+                    'assets/images/fullbody.jpeg',
+                    fit: BoxFit.cover,
+                    width: 370,
+                    height: 150,
+                  ),
           ),
           Positioned(
             bottom: 20,
@@ -45,19 +52,19 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
           Positioned(
-              bottom: 20,
-              right: 20,
-              child: IconButton(
-                  onPressed: () {
-                    onFavoriteToggle();
-                  },
-                  icon: Icon(
-                    category.isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: Colors.red,
-                    size: 35,
-                  )))
+            bottom: 20,
+            right: 20,
+            child: IconButton(
+              onPressed: () {
+                onFavoriteToggle();
+              },
+              icon: Icon(
+                category.isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: Colors.red,
+                size: 35,
+              ),
+            ),
+          ),
         ],
       ),
     );

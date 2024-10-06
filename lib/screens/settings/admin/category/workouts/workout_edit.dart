@@ -91,6 +91,7 @@ class _WorkoutEditState extends State<WorkoutEdit> {
     required String labelText,
     required String errorMessage,
     TextInputType keyboardType = TextInputType.text,
+    int? maxLine = 1,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -103,6 +104,7 @@ class _WorkoutEditState extends State<WorkoutEdit> {
           return null;
         },
         keyboardType: keyboardType,
+        maxLines: maxLine,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey,
@@ -147,10 +149,10 @@ class _WorkoutEditState extends State<WorkoutEdit> {
                       ),
                       const SizedBox(height: 30),
                       _textField(
-                        controller: _descriptionController,
-                        labelText: 'Description',
-                        errorMessage: 'Please enter description',
-                      ),
+                          controller: _descriptionController,
+                          labelText: 'Description',
+                          errorMessage: 'Please enter description',
+                          maxLine: null),
                       const SizedBox(height: 30),
                       _textField(
                         controller: _durationController,

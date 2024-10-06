@@ -22,31 +22,25 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     loadWorkouts(widget.categoryModel.boxName);
   }
 
-  /// Start the workout sequence, starting with an optional initial break.
   void _startWorkoutSequenceWithInitialBreak(
       List<WorkoutModel> workouts) async {
-    // Start with a break time before the first workout.
     await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => BreakScreen(
-          initialBreakDuration: 15, // Pre-workout break of 15 seconds
+          initialBreakDuration: 15,
           onBreakComplete: () => Navigator.pop(context),
           onSkipBreak: () => Navigator.pop(context),
         ),
       ),
     );
-
-    // After the initial break, start the workout sequence
     _startWorkoutSequence(workouts);
   }
 
-  /// Start the workout sequence without an initial break.
   void _startWorkoutSequence(List<WorkoutModel> workouts) async {
     for (int i = 0; i < workouts.length; i++) {
       final currentWorkout = workouts[i];
 
-      // Navigate to the workout details screen
       await Navigator.push(
         // ignore: use_build_context_synchronously
         context,
@@ -59,17 +53,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         ),
       );
 
-      // If it's not the last workout, show the break screen
       if (i < workouts.length - 1) {
         await Navigator.push(
           // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (context) => BreakScreen(
-              initialBreakDuration: 15, // Break between workouts
-              onBreakComplete: () =>
-                  Navigator.pop(context), // Close when break ends
-              onSkipBreak: () => Navigator.pop(context), // Skip break
+              initialBreakDuration: 15,
+              onBreakComplete: () => Navigator.pop(context),
+              onSkipBreak: () => Navigator.pop(context),
             ),
           ),
         );
@@ -91,10 +83,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               foregroundColor: Colors.white,
               onPressed: workout.isNotEmpty
                   ? () {
-                      // Start the workout sequence when the button is pressed
                       _startWorkoutSequenceWithInitialBreak(workout);
                     }
-                  : null, // Disable button if no workouts
+                  : null,
               label: const Text(
                 'Start',
                 style: TextStyle(fontSize: 25),
@@ -119,8 +110,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 final workouts = workout[index];
                 return InkWell(
                   onTap: () {
-                    _startWorkoutSequence(
-                        workout); // Optionally allow starting from a workout tap
+                    _startWorkoutSequence(workout);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

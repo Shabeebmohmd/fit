@@ -3,9 +3,9 @@ import 'package:fit/color/colors.dart';
 import 'package:fit/db/db_functions.dart';
 import 'package:fit/models/category_model.dart';
 import 'package:fit/models/workout_model.dart';
-import 'package:fit/screens/settings/admincategory/add_workout.dart';
-import 'package:fit/screens/settings/admincategory/workout_details.dart';
-import 'package:fit/screens/settings/admincategory/workout_edit.dart';
+import 'package:fit/screens/settings/admin/category/workouts/add_workout.dart';
+import 'package:fit/screens/settings/admin/category/workouts/workout_details.dart';
+import 'package:fit/screens/settings/admin/category/workouts/workout_edit.dart';
 
 class WorkoutList extends StatefulWidget {
   final CategoryModel category;
@@ -58,12 +58,12 @@ class _WorkoutListState extends State<WorkoutList> {
       backgroundColor: Colorss.backgroundColor,
       appBar: AppBar(
         title: Text(
-          widget.category.categoryName, // Display category name
+          widget.category.categoryName,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: ValueListenableBuilder<List<WorkoutModel>>(
-        valueListenable: workoutNotifier, // No need for ! after null check
+        valueListenable: workoutNotifier,
         builder: (context, List<WorkoutModel> workouts, _) {
           if (workouts.isEmpty) {
             return const Center(

@@ -1,4 +1,5 @@
 import 'package:fit/models/workout_model.dart';
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutInfo extends StatefulWidget {
@@ -14,13 +15,7 @@ class _WorkoutInfoState extends State<WorkoutInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(
-        title: const Text(
-          'Workout Info!!',
-          style: TextStyle(fontSize: 30),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const CustomAppBar(title: 'Workout Info!!'),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

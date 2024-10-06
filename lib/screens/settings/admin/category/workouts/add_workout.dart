@@ -42,6 +42,7 @@ class _AddWorkoutState extends State<AddWorkout> {
     required FormFieldSetter<String> onSaved,
     required FormFieldValidator<String> validator,
     TextInputType inputType = TextInputType.text,
+    int? maxLines = 1,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -49,6 +50,7 @@ class _AddWorkoutState extends State<AddWorkout> {
         onSaved: onSaved,
         validator: validator,
         keyboardType: inputType,
+        maxLines: maxLines,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey,
@@ -105,15 +107,16 @@ class _AddWorkoutState extends State<AddWorkout> {
                       ),
                       const SizedBox(height: 30),
                       _inputField(
-                        labelText: 'Description',
-                        onSaved: (value) => description = value!,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter description';
-                          }
-                          return null;
-                        },
-                      ),
+                          labelText: 'Description',
+                          onSaved: (value) => description = value!,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter description';
+                            }
+                            return null;
+                          },
+                          inputType: TextInputType.multiline,
+                          maxLines: null),
                       const SizedBox(height: 30),
                       _inputField(
                         labelText: 'Duration',
