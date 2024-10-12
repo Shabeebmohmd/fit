@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="fit"
+        android:enableOnBackInvokedCallback="true"
+        android:label="Fit Pro"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

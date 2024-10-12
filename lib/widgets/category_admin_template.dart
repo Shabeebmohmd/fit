@@ -24,26 +24,47 @@ class CategoryAdminCard extends StatefulWidget {
 
 class _CategoryAdminCardState extends State<CategoryAdminCard> {
   File? imageFile;
+
   @override
   void initState() {
     super.initState();
-    if (widget.categoryModel.imagePath != null) {
-      imageFile = File(widget.categoryModel.imagePath!);
+    _initializeImage();
+  }
+
+  // Initialize the image file from category model, if available
+  void _initializeImage() {
+    if (widget.categoryModel.imagePath != null &&
+        widget.categoryModel.imagePath!.isNotEmpty) {
+      final file = File(widget.categoryModel.imagePath!);
+      // Check if the file exists to avoid trying to load a non-existent image
+      if (file.existsSync()) {
+        setState(() {
+          imageFile = file;
+        });
+      }
     }
   }
 
   Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-        widget.categoryModel.imagePath = pickedFile.path;
-        final box = Hive.box<CategoryModel>('category');
-        box.putAt(widget.index, widget.categoryModel);
-        loadCategories();
-      });
+      if (pickedFile != null) {
+        setState(() {
+          imageFile = File(pickedFile.path);
+          widget.categoryModel.imagePath = pickedFile.path;
+
+          // Save the updated image path to Hive
+          final box = Hive.box<CategoryModel>('category');
+          box.putAt(widget.index, widget.categoryModel);
+
+          // Optionally, reload categories if needed
+          loadCategories();
+        });
+      }
+    } catch (e) {
+      print('Error picking image: $e');
     }
   }
 
@@ -60,19 +81,7 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(17),
-            child: imageFile != null
-                ? Image.file(
-                    imageFile!,
-                    fit: BoxFit.cover,
-                    width: 370,
-                    height: 150,
-                  )
-                : Image.asset(
-                    'assets/images/fullbody.jpeg',
-                    fit: BoxFit.cover,
-                    width: 370,
-                    height: 150,
-                  ),
+            child: _buildImage(),
           ),
           Positioned(
             bottom: 20,
@@ -123,5 +132,24 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
         ],
       ),
     );
+  }
+
+  // Method to build the image widget based on whether the image file exists
+  Widget _buildImage() {
+    if (imageFile != null && imageFile!.existsSync()) {
+      return Image.file(
+        imageFile!,
+        fit: BoxFit.cover,
+        width: 370,
+        height: 150,
+      );
+    } else {
+      return Image.asset(
+        'assets/images/fullbody.jpeg', // Placeholder image
+        fit: BoxFit.cover,
+        width: 370,
+        height: 150,
+      );
+    }
   }
 }

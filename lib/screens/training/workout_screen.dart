@@ -6,20 +6,55 @@ import 'package:fit/screens/training/break_time_screen.dart';
 import 'package:fit/screens/training/workout_details.dart';
 import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class WorkoutScreen extends StatefulWidget {
   final CategoryModel categoryModel;
-  const WorkoutScreen({super.key, required this.categoryModel});
+  const WorkoutScreen({
+    super.key,
+    required this.categoryModel,
+  });
 
   @override
   State<WorkoutScreen> createState() => _WorkoutScreenState();
 }
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
+  late YoutubePlayerController _playerController;
   @override
   void initState() {
     super.initState();
     loadWorkouts(widget.categoryModel.boxName);
+  }
+
+  void _initializeYoutubeController(String? url) {
+    final videoID = YoutubePlayer.convertUrlToId(url ?? '');
+    if (videoID != null) {
+      _playerController = YoutubePlayerController(
+        initialVideoId: videoID,
+        flags: const YoutubePlayerFlags(autoPlay: true, mute: true),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _playerController.dispose();
+    super.dispose();
+  }
+
+  Widget _buildYoutubePlayer() {
+    return SizedBox(
+      height: 50,
+      width: 50,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: YoutubePlayer(
+          controller: _playerController,
+          showVideoProgressIndicator: false,
+        ),
+      ),
+    );
   }
 
   void _startWorkoutSequenceWithInitialBreak(
@@ -108,6 +143,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               itemCount: workout.length,
               itemBuilder: (context, index) {
                 final workouts = workout[index];
+                _initializeYoutubeController(workouts.url);
                 return InkWell(
                   onTap: () {
                     _startWorkoutSequence(workout);
@@ -119,7 +155,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       child: ListTile(
                         leading: ClipRRect(
                             borderRadius: BorderRadius.circular(7),
-                            child: Image.asset('assets/images/tile.jpeg')),
+                            child: _buildYoutubePlayer()),
                         title: Text(
                           workouts.workoutName,
                           style: const TextStyle(

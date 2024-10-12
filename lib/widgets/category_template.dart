@@ -25,19 +25,7 @@ class CategoryCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(17),
-            child: category.imagePath != null && category.imagePath!.isNotEmpty
-                ? Image.file(
-                    File(category.imagePath!),
-                    fit: BoxFit.cover,
-                    width: 370,
-                    height: 150,
-                  )
-                : Image.asset(
-                    'assets/images/fullbody.jpeg',
-                    fit: BoxFit.cover,
-                    width: 370,
-                    height: 150,
-                  ),
+            child: _buildImage(), // Use the helper method to build the image
           ),
           Positioned(
             bottom: 20,
@@ -67,6 +55,30 @@ class CategoryCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  // Helper method to build the image widget
+  Widget _buildImage() {
+    // Check if the category has a valid image path
+    if (category.imagePath != null && category.imagePath!.isNotEmpty) {
+      final file = File(category.imagePath!);
+      if (file.existsSync()) {
+        // If the image file exists, show it
+        return Image.file(
+          file,
+          fit: BoxFit.cover,
+          width: 370,
+          height: 150,
+        );
+      }
+    }
+    // If no image path or the file doesn't exist, show a placeholder
+    return Image.asset(
+      'assets/images/fullbody.jpeg', // Placeholder image
+      fit: BoxFit.cover,
+      width: 370,
+      height: 150,
     );
   }
 }

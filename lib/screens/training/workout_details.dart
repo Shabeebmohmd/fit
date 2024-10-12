@@ -8,13 +8,13 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class WorkoutDetails extends StatefulWidget {
   final int workoutIndex;
   final WorkoutModel model;
-  final List<WorkoutModel> workouts; // Add list of workouts
+  final List<WorkoutModel> workouts;
 
   const WorkoutDetails({
     super.key,
     required this.model,
     required this.workoutIndex,
-    required this.workouts, // Pass list of workouts
+    required this.workouts,
   });
 
   @override
@@ -34,7 +34,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     _initializeYoutubeController();
     time = widget.model.duration.toInt();
     totalTime = time;
-    startTimer(); // Automatically start the timer
+    startTimer();
   }
 
   void _initializeYoutubeController() {
@@ -54,7 +54,6 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     super.dispose();
   }
 
-  // Timer Logic
   void startTimer() {
     if (isRunning) return;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -63,7 +62,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
           time--;
         } else {
           timer.cancel();
-          _loadNextWorkout(); // Automatically load the next workout when time ends
+          _loadNextWorkout();
         }
       });
     });
@@ -87,10 +86,8 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
     });
   }
 
-  // Logic to get the next workout
   void _loadNextWorkout() {
     if (widget.workoutIndex < widget.workouts.length - 1) {
-      // If there are more workouts, go to the next workout
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -102,12 +99,10 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
         ),
       );
     } else {
-      // No more workouts, go back to the workout screen or finish
       Navigator.pop(context);
     }
   }
 
-  // Manually skip to the next workout
   void _skipWorkout() {
     _timer?.cancel();
     _loadNextWorkout();
@@ -131,14 +126,13 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
             const SizedBox(height: 50),
             _buildTimerButtons(),
             const SizedBox(height: 20),
-            _buildSkipButton(), // Add skip button
+            _buildSkipButton(),
           ],
         ),
       ),
     );
   }
 
-  // Helper methods to improve modularity and readability
   AppBar _buildAppBar() {
     return AppBar(
       centerTitle: true,
@@ -249,7 +243,7 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
 
   Widget _buildSkipButton() {
     return MaterialButton(
-      onPressed: _skipWorkout, // Skip to the next workout
+      onPressed: _skipWorkout,
       color: Colors.blue,
       child: const Text(
         'SKIP',

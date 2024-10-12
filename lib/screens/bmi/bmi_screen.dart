@@ -1,3 +1,5 @@
+import 'package:fit/db/bmi_functions.dart';
+import 'package:fit/screens/bmi/bmi_histroy_screen.dart';
 import 'package:fit/screens/bmi/diet_plan_screen.dart';
 import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +73,10 @@ class _BmiscreenState extends State<Bmiscreen> {
               ),
               const SizedBox(height: 20),
               _dietPlanButton(context),
+              const SizedBox(
+                height: 20,
+              ),
+              _bmiHistoryButton(context)
             ],
           ),
         ),
@@ -118,7 +124,7 @@ class _BmiscreenState extends State<Bmiscreen> {
       width: 330,
       height: 50,
       child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             setState(() {
               _calculateBMI();
             });
@@ -135,12 +141,12 @@ class _BmiscreenState extends State<Bmiscreen> {
     );
   }
 
-  void _calculateBMI() {
+  Future<void> _calculateBMI() async {
     final double height = double.tryParse(_heightcontroller.text) ?? 0;
     final double weight = double.tryParse(_weightcontroller.text) ?? 0;
     double heightcm = height / 100;
     if (heightcm > 0 && weight > 0) {
-      _bmi = weight / (heightcm * heightcm);
+      _bmi = double.parse((weight / (heightcm * heightcm)).toStringAsFixed(2));
 
       if (_bmi < 18.5) {
         _bmiCategory = 'Underweight';
@@ -151,6 +157,7 @@ class _BmiscreenState extends State<Bmiscreen> {
       } else if (_bmi >= 40.0) {
         _bmiCategory = 'Obese';
       }
+      await addBmi(_bmiCategory, _bmi);
     } else {
       _bmi = 0;
       _bmiCategory = '';
@@ -253,6 +260,34 @@ class _BmiscreenState extends State<Bmiscreen> {
             foregroundColor: Colors.white),
         child: const Text(
           'View Diet Plan',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      ),
+    );
+  }
+
+  SizedBox _bmiHistoryButton(BuildContext context) {
+    return SizedBox(
+      width: 330,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () async {
+          await loadAllBmi();
+          Navigator.push(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(builder: (context) => BmiHistroyScreen()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.amber,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(17),
+          ),
+          foregroundColor: Colors.white,
+        ),
+        child: const Text(
+          'BMI History',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),

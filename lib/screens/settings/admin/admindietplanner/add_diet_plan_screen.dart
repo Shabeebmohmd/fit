@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fit/color/colors.dart';
 import 'package:fit/db/diet_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,7 @@ class _AddDietPlanPageState extends State<AddDietPlanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colorss.backgroundColor,
       appBar: AppBar(title: Text('Add Diet Plan for ${widget.category}')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -54,8 +56,19 @@ class _AddDietPlanPageState extends State<AddDietPlanPage> {
                           }
                           return null;
                         },
-                        decoration:
-                            const InputDecoration(labelText: 'Headline'),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          labelText: 'Headline',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 25,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(17),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
@@ -66,11 +79,26 @@ class _AddDietPlanPageState extends State<AddDietPlanPage> {
                           }
                           return null;
                         },
-                        decoration: const InputDecoration(labelText: 'Details'),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          labelText: 'Diet plan',
+                          labelStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 25,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(17),
+                          ),
+                        ),
                         maxLines: null,
                       ),
                       const SizedBox(height: 16),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colorss.buttonColor,
+                            foregroundColor: Colors.white),
                         onPressed: saveWorkoutDietPlan,
                         child: const Text('Add Diet Plan'),
                       ),

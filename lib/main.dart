@@ -1,4 +1,5 @@
 import 'package:fit/db/diet_functions.dart';
+import 'package:fit/models/bmi_model.dart';
 import 'package:fit/models/category_model.dart';
 import 'package:fit/models/data_models.dart';
 import 'package:fit/models/diet_model.dart';
@@ -14,9 +15,11 @@ Future<void> main() async {
   Hive.registerAdapter(WorkoutModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
   Hive.registerAdapter(DietPlanAdapter());
+  Hive.registerAdapter(BmiModelAdapter());
   await Hive.openBox<CategoryModel>('category');
   await Hive.openBox<UserData>('userData');
   openHiveBoxesForDiet();
+  await Hive.openBox<BmiModel>('bmiBox');
   runApp(const MyApp());
 }
 

@@ -14,6 +14,12 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
+  void initState() {
+    super.initState();
+    loadCategories();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,

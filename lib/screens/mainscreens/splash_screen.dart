@@ -18,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
     )..addListener(() {
         setState(() {});
       });
@@ -31,8 +31,10 @@ class _SplashscreenState extends State<Splashscreen>
     await Future.delayed(const Duration(seconds: 3));
     var userBox = Hive.box<UserData>('userData');
     userBox.isNotEmpty
+        // ignore: use_build_context_synchronously
         ? Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const Homescreen()))
+        // ignore: use_build_context_synchronously
         : Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const Onboarding()));
   }
