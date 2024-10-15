@@ -1,4 +1,5 @@
 import 'package:fit/color/colors.dart';
+import 'package:fit/db/db_functions.dart';
 import 'package:fit/screens/settings/admin/category/admin_categories_screen.dart';
 import 'package:fit/screens/settings/admin/admindietplanner/diet_category_screen.dart';
 import 'package:fit/widgets/custom_appbar.dart';
@@ -38,7 +39,8 @@ class AdminScreen extends StatelessWidget {
               height: 50,
               width: 220,
               child: MaterialButton(
-                onPressed: () {
+                onPressed: () async {
+                  loadCategories();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -68,7 +68,7 @@ class CategoryCard extends StatelessWidget {
         return Image.file(
           file,
           fit: BoxFit.cover,
-          width: 370,
+          width: double.infinity,
           height: 150,
         );
       }
@@ -77,7 +77,7 @@ class CategoryCard extends StatelessWidget {
     return Image.asset(
       'assets/images/fullbody.jpeg', // Placeholder image
       fit: BoxFit.cover,
-      width: 370,
+      width: double.infinity,
       height: 150,
     );
   }

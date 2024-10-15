@@ -118,16 +118,18 @@ class _WorkoutDetailsState extends State<WorkoutDetails> {
       backgroundColor: Colorss.backgroundColor,
       appBar: _buildAppBar(),
       body: Center(
-        child: Column(
-          children: [
-            _buildYoutubePlayer(),
-            const SizedBox(height: 50),
-            _buildProgressIndicator(),
-            const SizedBox(height: 50),
-            _buildTimerButtons(),
-            const SizedBox(height: 20),
-            _buildSkipButton(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildYoutubePlayer(),
+              const SizedBox(height: 50),
+              _buildProgressIndicator(),
+              const SizedBox(height: 50),
+              _buildTimerButtons(),
+              const SizedBox(height: 20),
+              _buildSkipButton(),
+            ],
+          ),
         ),
       ),
     );

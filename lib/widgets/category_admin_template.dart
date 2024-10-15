@@ -46,25 +46,21 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
   }
 
   Future<void> _pickImage() async {
-    try {
-      final pickedFile =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      if (pickedFile != null) {
-        setState(() {
-          imageFile = File(pickedFile.path);
-          widget.categoryModel.imagePath = pickedFile.path;
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+        widget.categoryModel.imagePath = pickedFile.path;
 
-          // Save the updated image path to Hive
-          final box = Hive.box<CategoryModel>('category');
-          box.putAt(widget.index, widget.categoryModel);
+        // Save the updated image path to Hive
+        final box = Hive.box<CategoryModel>('category');
+        box.putAt(widget.index, widget.categoryModel);
 
-          // Optionally, reload categories if needed
-          loadCategories();
-        });
-      }
-    } catch (e) {
-      print('Error picking image: $e');
+        // Optionally, reload categories if needed
+        loadCategories();
+      });
     }
   }
 
@@ -140,14 +136,14 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
       return Image.file(
         imageFile!,
         fit: BoxFit.cover,
-        width: 370,
+        width: double.infinity,
         height: 150,
       );
     } else {
       return Image.asset(
         'assets/images/fullbody.jpeg', // Placeholder image
         fit: BoxFit.cover,
-        width: 370,
+        width: double.infinity,
         height: 150,
       );
     }

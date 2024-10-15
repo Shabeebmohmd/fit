@@ -35,72 +35,93 @@ class _AdminCategoriesScreenState extends State<AdminCategoriesScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ValueListenableBuilder<List<CategoryModel>>(
-            valueListenable: categoryNotifier,
-            builder: (context, List<CategoryModel> categories, _) {
-              if (categories.isEmpty) {
-                return const Center(
-                  child: Text('Add category'),
-                );
-              } else {
-                return ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                          height: 30,
-                        ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            bool isLargeScreen = constraints.maxWidth > 600;
+
+            return ValueListenableBuilder<List<CategoryModel>>(
+              valueListenable: categoryNotifier,
+              builder: (context, List<CategoryModel> categories, _) {
+                if (categories.isEmpty) {
+                  return const Center(
+                    child: Text('Add category'),
+                  );
+                } else {
+                  return ListView.separated(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isLargeScreen ? 20.0 : 8.0,
+                      vertical: isLargeScreen ? 16.0 : 8.0,
+                    ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: isLargeScreen ? 40 : 30,
+                    ),
                     itemCount: categories.length,
                     itemBuilder: (context, index) {
                       var ctgry = categories[index];
                       return InkWell(
-                          onTap: () async {
-                            await loadWorkouts(ctgry.boxName);
-                            Navigator.push(
-                                // ignore: use_build_context_synchronously
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        WorkoutList(category: ctgry)));
-                          },
-                          onLongPress: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                      title: const Text("'DELETE!'"),
-                                      content: const Text(
-                                          'Are you sure you want to Delete'),
-                                      actions: [
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const Text(
-                                              'Cancel',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontSize: 20),
-                                            )),
-                                        TextButton(
-                                            onPressed: () {
-                                              deleteCategory(ctgry);
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const Text(
-                                              'Confirm',
-                                              style: TextStyle(
-                                                  color: Colors.blue,
-                                                  fontSize: 20),
-                                            ))
-                                      ]);
-                                });
-                          },
-                          child: CategoryAdminCard(
-                            categoryname: ctgry.categoryName,
-                            categoryModel: ctgry,
-                            index: index,
-                          ));
-                    });
-              }
-            }),
+                        onTap: () async {
+                          await loadWorkouts(ctgry.boxName);
+                          Navigator.push(
+                            // ignore: use_build_context_synchronously
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  WorkoutList(category: ctgry),
+                            ),
+                          );
+                        },
+                        onLongPress: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("'DELETE!'"),
+                                content: const Text(
+                                    'Are you sure you want to Delete'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      deleteCategory(ctgry);
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text(
+                                      'Confirm',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: CategoryAdminCard(
+                          categoryname: ctgry.categoryName,
+                          categoryModel: ctgry,
+                          index: index,
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
+            );
+          },
+        ),
       ),
     );
   }
