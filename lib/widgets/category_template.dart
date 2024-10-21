@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(17),
-            child: _buildImage(), // Use the helper method to build the image
+            child: _buildImage(),
           ),
           Positioned(
             bottom: 20,
@@ -75,7 +75,7 @@ class CategoryCard extends StatelessWidget {
     }
     // If no image path or the file doesn't exist, show a placeholder
     return Image.asset(
-      'assets/images/fullbody.jpeg', // Placeholder image
+      'assets/images/placeholder.png', // Placeholder image
       fit: BoxFit.cover,
       width: double.infinity,
       height: 150,

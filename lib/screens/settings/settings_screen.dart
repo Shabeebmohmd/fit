@@ -57,15 +57,15 @@ class _SettingsscreenState extends State<Settingsscreen> {
                       MaterialPageRoute(builder: (context) => const Profile())),
                 ),
                 _listTile(
-                  title: 'Admin Panel',
+                  title: 'Add workouts & Diet',
                   iconPath: 'assets/icons/user.png',
                   onTap: () => showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                            title: const Text("'LOG IN!'"),
-                            content:
-                                const Text('Are you sure you want to Login'),
+                            title: const Text("Hey there"),
+                            content: const Text(
+                                'Tap confirm to add workouts & diet plan'),
                             actions: [
                               TextButton(
                                   onPressed: () {
@@ -94,14 +94,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
                       }),
                 ),
                 _listTile(
-                    title: 'About us',
-                    iconPath: 'assets/icons/information.png',
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Aboutscreen()))),
-                _listTile(
-                    title: 'Privacy & policy',
+                    title: 'Privacy policy',
                     iconPath: 'assets/icons/privacy.png',
                     onTap: () => Navigator.push(
                         context,
@@ -110,12 +103,19 @@ class _SettingsscreenState extends State<Settingsscreen> {
                 _listTile(
                   title: 'Terms & conditions',
                   iconPath: 'assets/icons/terms-and-conditions.png',
-                  showDivider: false,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const TermsCoditions())),
-                )
+                ),
+                _listTile(
+                    title: 'About us',
+                    iconPath: 'assets/icons/information.png',
+                    showDivider: false,
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Aboutscreen()))),
               ],
             ),
           ),

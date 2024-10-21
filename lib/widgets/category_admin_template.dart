@@ -31,12 +31,10 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
     _initializeImage();
   }
 
-  // Initialize the image file from category model, if available
   void _initializeImage() {
     if (widget.categoryModel.imagePath != null &&
         widget.categoryModel.imagePath!.isNotEmpty) {
       final file = File(widget.categoryModel.imagePath!);
-      // Check if the file exists to avoid trying to load a non-existent image
       if (file.existsSync()) {
         setState(() {
           imageFile = file;
@@ -53,12 +51,8 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
       setState(() {
         imageFile = File(pickedFile.path);
         widget.categoryModel.imagePath = pickedFile.path;
-
-        // Save the updated image path to Hive
         final box = Hive.box<CategoryModel>('category');
         box.putAt(widget.index, widget.categoryModel);
-
-        // Optionally, reload categories if needed
         loadCategories();
       });
     }
@@ -82,12 +76,15 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
           Positioned(
             bottom: 20,
             left: 20,
-            child: Text(
-              widget.categoryname,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.white,
+            child: Card(
+              color: Colors.black,
+              child: Text(
+                widget.categoryname,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -95,42 +92,39 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
             bottom: 20,
             right: 20,
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                 onPressed: _pickImage,
-                child: const Icon(Icons.add_a_photo)),
+                child: const Icon(
+                  Icons.add_a_photo,
+                  color: Colors.white,
+                )),
           ),
           Positioned(
-            bottom: 70,
-            right: 20,
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EditCategory(
-                          categoryModel: widget.categoryModel,
-                          index: widget.index,
-                        ),
+              bottom: 70,
+              right: 20,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditCategory(
+                        categoryModel: widget.categoryModel,
+                        index: widget.index,
                       ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.edit_square,
-                    color: Colors.amber,
-                    size: 35,
-                  ),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: Icon(
+                  Icons.edit_square,
+                  color: Colors.amber,
                 ),
-              ],
-            ),
-          ),
+              )),
         ],
       ),
     );
   }
 
-  // Method to build the image widget based on whether the image file exists
   Widget _buildImage() {
     if (imageFile != null && imageFile!.existsSync()) {
       return Image.file(
@@ -141,7 +135,7 @@ class _CategoryAdminCardState extends State<CategoryAdminCard> {
       );
     } else {
       return Image.asset(
-        'assets/images/fullbody.jpeg', // Placeholder image
+        'assets/images/placeholder.png',
         fit: BoxFit.cover,
         width: double.infinity,
         height: 150,

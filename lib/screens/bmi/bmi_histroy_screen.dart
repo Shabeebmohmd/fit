@@ -12,42 +12,50 @@ class BmiHistroyScreen extends StatelessWidget {
     return Scaffold(
       // backgroundColor: Colorss.backgroundColor,
       appBar: CustomAppBar(title: 'BMI HISTROY'),
-      body: ValueListenableBuilder<List<BmiModel>>(
-          valueListenable: bmiNotifier,
-          builder: (context, List<BmiModel> bmi, _) {
-            if (bmi.isEmpty) {
-              return const Center(child: Text('No history found'));
-            } else {
-              return ListView.builder(
-                  itemCount: bmi.length,
-                  itemBuilder: (context, index) {
-                    final bmiEntry = bmi[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DietPlanScreen(
-                                    bmicategory: bmiEntry.bmiCategory))),
-                        textColor: Colors.white,
-                        onLongPress: () => _showAlertDialog(context, index),
-                        tileColor: _getCategoryColor(bmiEntry.bmiCategory),
-                        leading: Text(
-                          bmiEntry.bmiValue.toString(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/edit diet.jpeg'),
+                fit: BoxFit.cover)),
+        child: ValueListenableBuilder<List<BmiModel>>(
+            valueListenable: bmiNotifier,
+            builder: (context, List<BmiModel> bmi, _) {
+              if (bmi.isEmpty) {
+                return const Center(child: Text('No history found'));
+              } else {
+                return ListView.builder(
+                    itemCount: bmi.length,
+                    itemBuilder: (context, index) {
+                      final bmiEntry = bmi[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: ListTile(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DietPlanScreen(
+                                        bmicategory: bmiEntry.bmiCategory))),
+                            textColor: Colors.white,
+                            onLongPress: () => _showAlertDialog(context, index),
+                            tileColor: _getCategoryColor(bmiEntry.bmiCategory),
+                            leading: Text(
+                              bmiEntry.bmiValue.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            trailing: Text(
+                              bmiEntry.bmiCategory,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                          ),
                         ),
-                        trailing: Text(
-                          bmiEntry.bmiCategory,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                      ),
-                    );
-                  });
-            }
-          }),
+                      );
+                    });
+              }
+            }),
+      ),
     );
   }
 

@@ -13,48 +13,100 @@ class AdminScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
       appBar: const CustomAppBar(title: 'ADMIN PANEL'),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 50,
-              width: 220,
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CategorySelectionPage()));
-                },
-                color: Colors.teal,
-                child: const Text(
-                  'DIET PLAN FOR BMI',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CategorySelectionPage()));
+              },
+              child: Container(
+                  width: double.infinity,
+                  height: 170,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(17)),
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(17),
+                          child: Image.asset(
+                            'assets/images/Banana Oatmeal.jpeg',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 150,
+                          )),
+                      Positioned(
+                          bottom: 25,
+                          right: 20,
+                          child: Container(
+                            height: 35,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: Colors.teal,
+                                borderRadius: BorderRadius.circular(7)),
+                            child: Center(
+                                child: Text(
+                              'Add diet plan',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            )),
+                          ))
+                    ],
+                  )),
             ),
-            const Divider(),
-            SizedBox(
-              height: 50,
-              width: 220,
-              child: MaterialButton(
-                onPressed: () async {
-                  loadCategories();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AdminCategoriesScreen()));
-                },
-                color: Colors.teal,
-                child: const Text(
-                  'ADD CATEGORIES',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: InkWell(
+              onTap: () async {
+                await loadCategories();
+                Navigator.push(
+                    // ignore: use_build_context_synchronously
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AdminCategoriesScreen()));
+              },
+              child: Container(
+                  width: double.infinity,
+                  height: 170,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(17)),
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(17),
+                          child: Image.asset(
+                            'assets/images/category.jpeg',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 150,
+                          )),
+                      Positioned(
+                          bottom: 25,
+                          right: 20,
+                          child: Container(
+                            height: 35,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: Colors.teal,
+                                borderRadius: BorderRadius.circular(7)),
+                            child: Center(
+                                child: Text(
+                              'Add categories',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            )),
+                          ))
+                    ],
+                  )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

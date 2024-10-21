@@ -16,13 +16,19 @@ class _WorkoutInfoState extends State<WorkoutInfo> {
     return Scaffold(
       // backgroundColor: Colorss.backgroundColor,
       appBar: const CustomAppBar(title: 'Workout Info!!'),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/workout info.jpeg'),
+                fit: BoxFit.cover)),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               widget.model.description,
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20, color: Colors.white),
             ),
           ),
         ),

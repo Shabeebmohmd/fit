@@ -1,3 +1,4 @@
+import 'package:fit/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fit/color/colors.dart';
 import 'package:fit/db/db_functions.dart';
@@ -32,12 +33,7 @@ class _WorkoutListState extends State<WorkoutList> {
 
     if (workoutNotifier == null) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            widget.category.categoryName,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
+        appBar: CustomAppBar(title: widget.category.categoryName),
         body: const Center(
           child: CircularProgressIndicator(),
         ),
@@ -56,18 +52,16 @@ class _WorkoutListState extends State<WorkoutList> {
         child: const Icon(Icons.add),
       ),
       backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(
-        title: Text(
-          widget.category.categoryName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: CustomAppBar(title: widget.category.categoryName),
       body: ValueListenableBuilder<List<WorkoutModel>>(
         valueListenable: workoutNotifier,
         builder: (context, List<WorkoutModel> workouts, _) {
           if (workouts.isEmpty) {
             return const Center(
-              child: Text('Add Workout'),
+              child: Text(
+                'Press add button to add workout',
+                style: TextStyle(fontSize: 17),
+              ),
             );
           } else {
             return Padding(

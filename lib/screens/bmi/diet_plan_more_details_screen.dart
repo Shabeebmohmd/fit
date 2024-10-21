@@ -20,37 +20,31 @@ class _DietPlanMoreDetailsScreenState extends State<DietPlanMoreDetailsScreen> {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
       appBar: CustomAppBar(title: widget.bmicategory),
-      body: Center(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/diet details.jpeg'),
+                fit: BoxFit.cover)),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Card(
-              elevation: 5,
-              child: ListTile(
-                title: Text(
-                  widget.model.headline,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5,
-              child: ListTile(
-                title: Text(
-                  widget.model.details,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            )
-          ],
+            child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(children: [
+                  TextSpan(
+                      text: '${widget.model.headline} \n\n',
+                      style: TextStyle(
+                        fontSize: 50,
+                      )),
+                  TextSpan(
+                      text: widget.model.details,
+                      style: TextStyle(fontSize: 17))
+                ])),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

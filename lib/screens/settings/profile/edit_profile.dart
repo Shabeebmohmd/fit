@@ -113,70 +113,75 @@ class _EditprofileState extends State<Editprofile> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            width: 326,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(17),
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _textField(
-                    label: 'Enter your name',
-                    controller: _nameController,
-                    errorMessage: 'Enter your name',
-                  ),
-                  _textField(
-                    label: 'Enter your age',
-                    controller: _ageController,
-                    errorMessage: 'Enter your age',
-                    inputType: TextInputType.number,
-                  ),
-                  _textField(
-                    label: 'Enter your height',
-                    controller: _heightController,
-                    errorMessage: 'Enter your height',
-                    inputType: TextInputType.number,
-                  ),
-                  _textField(
-                    label: 'Enter your weight',
-                    controller: _weightController,
-                    errorMessage: 'Enter your weight',
-                    inputType: TextInputType.number,
-                  ),
-                  const SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: _clearFields,
-                        style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          backgroundColor: Colorss.buttonColor,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(100, 50),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              width: 326,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(17),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _textField(
+                      label: 'Enter your name',
+                      controller: _nameController,
+                      errorMessage: 'Enter your name',
+                    ),
+                    _textField(
+                      label: 'Enter your age',
+                      controller: _ageController,
+                      errorMessage: 'Enter your age',
+                      inputType: TextInputType.number,
+                    ),
+                    _textField(
+                      label: 'Enter your height',
+                      controller: _heightController,
+                      errorMessage: 'Enter your height',
+                      inputType: TextInputType.number,
+                    ),
+                    _textField(
+                      label: 'Enter your weight',
+                      controller: _weightController,
+                      errorMessage: 'Enter your weight',
+                      inputType: TextInputType.number,
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _clearFields,
+                          style: ElevatedButton.styleFrom(
+                            elevation: 5,
+                            backgroundColor: Colorss.buttonColor,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(100, 50),
+                          ),
+                          child: const Text('CLEAR'),
                         ),
-                        child: const Text('CLEAR'),
-                      ),
-                      ElevatedButton(
-                        onPressed: _saveData,
-                        style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          backgroundColor: Colorss.buttonColor,
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(100, 50),
+                        ElevatedButton(
+                          onPressed: _saveData,
+                          style: ElevatedButton.styleFrom(
+                            elevation: 5,
+                            backgroundColor: Colorss.buttonColor,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(100, 50),
+                          ),
+                          child: const Text('SAVE'),
                         ),
-                        child: const Text('SAVE'),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

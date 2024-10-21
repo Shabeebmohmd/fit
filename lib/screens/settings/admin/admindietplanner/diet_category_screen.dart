@@ -11,85 +11,112 @@ class CategorySelectionPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
       appBar: const CustomAppBar(title: 'SELECT CATEGORY'),
-      body: ListView(
-        children: [
-          ListTile(
-            tileColor: Colors.blue,
-            textColor: Colors.white,
-            title: const Center(
-              child: Text(
-                'Underweight',
-                style: TextStyle(fontSize: 20),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/select category.jpeg'),
+                fit: BoxFit.cover)),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: ListTile(
+                  tileColor: Colors.blue,
+                  textColor: Colors.white,
+                  title: const Center(
+                    child: Text(
+                      'Underweight',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const DietPlanListPage(category: 'Underweight'),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const DietPlanListPage(category: 'Underweight'),
+            const SizedBox(
+              height: 7,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: ListTile(
+                  tileColor: Colors.green,
+                  textColor: Colors.white,
+                  title: const Center(
+                      child: Text(
+                    'Normal',
+                    style: TextStyle(fontSize: 20),
+                  )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const DietPlanListPage(category: 'Normal'),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          ListTile(
-            tileColor: Colors.green,
-            textColor: Colors.white,
-            title: const Center(
-                child: Text(
-              'Normal',
-              style: TextStyle(fontSize: 20),
-            )),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const DietPlanListPage(category: 'Normal'),
+              ),
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: ListTile(
+                  tileColor: Colors.orange,
+                  textColor: Colors.white,
+                  title: const Center(
+                      child:
+                          Text('Overweight', style: TextStyle(fontSize: 20))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const DietPlanListPage(category: 'Overweight'),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          ListTile(
-            tileColor: Colors.orange,
-            textColor: Colors.white,
-            title: const Center(
-                child: Text('Overweight', style: TextStyle(fontSize: 20))),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const DietPlanListPage(category: 'Overweight'),
+              ),
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: ListTile(
+                  tileColor: Colors.red,
+                  textColor: Colors.white,
+                  title: const Center(
+                      child: Text('Obese', style: TextStyle(fontSize: 20))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const DietPlanListPage(category: 'Obese'),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          ListTile(
-            tileColor: Colors.red,
-            textColor: Colors.white,
-            title: const Center(
-                child: Text('Obese', style: TextStyle(fontSize: 20))),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const DietPlanListPage(category: 'Obese'),
-                ),
-              );
-            },
-          ),
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

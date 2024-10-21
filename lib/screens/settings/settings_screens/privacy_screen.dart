@@ -19,11 +19,10 @@ class PrivacyScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
-            Text("Effective Date: [Insert Date]",
+            Text("Effective Date: 06/10/2024",
                 style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 16),
-            Text(
-                'Your Fitness App ("we," "our," or "us") is committed to protecting your privacy. '
+            Text('Fit Fusion is committed to protecting your privacy. '
                 'This Privacy Policy explains how we collect, use, and safeguard your personal '
                 'information when you use our mobile application (“App”), developed using Flutter technology.'),
             SizedBox(height: 16),
@@ -42,39 +41,21 @@ class PrivacyScreen extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-                'Name, email address, and contact information when you register or interact with the App. '
-                'Health and fitness data, such as weight, height, age, gender, activity level, and goals. '
-                'Data from third-party integrations (e.g., fitness trackers, Apple Health, or Google Fit) if you choose to sync them.'),
+                'We only taking your name, height, weight, age for calculate BMI'),
             SizedBox(height: 8),
             Text(
               "b. Usage Data",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-                'Information about your device (device type, operating system, and unique device identifiers). '
-                'Log data (IP address, access times, and pages viewed). '
-                'App usage patterns, including workout activities, user interactions, and feature usage.'),
+                'Information about your device (device type, operating system, and unique device identifiers). '),
             SizedBox(height: 8),
-            Text(
-              "c. Location Data",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-                'We may collect location data if you enable GPS tracking for features such as distance tracking during workouts.'),
-            SizedBox(height: 16),
             Text(
               "2. How We Use Your Information",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
                 'We use your data for the following purposes: Personalizing your fitness experience, improving the App’s functionality, communicating with you, and maintaining security.'),
-            SizedBox(height: 16),
-            Text(
-              "3. Sharing Your Information",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-                'We do not sell, trade, or rent your personal information to others. We may share your data with service providers, in compliance with legal requirements, or with your consent.'),
             SizedBox(height: 16),
             Text(
               "4. Data Storage and Security",
@@ -91,13 +72,6 @@ class PrivacyScreen extends StatelessWidget {
                 'Depending on your location and applicable laws, you may have the right to access, correct, delete, or export your personal data.'),
             SizedBox(height: 16),
             Text(
-              "6. Third-Party Links",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-                'The App may contain links to third-party websites or services. We are not responsible for their privacy practices.'),
-            SizedBox(height: 16),
-            Text(
               "7. Children's Privacy",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -111,12 +85,6 @@ class PrivacyScreen extends StatelessWidget {
             Text(
                 'We may update this Privacy Policy from time to time. Please review it periodically for changes.'),
             SizedBox(height: 16),
-            Text(
-              "9. Contact Us",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-                'If you have any questions or concerns about this Privacy Policy, please contact us at: [Your Support Email], [Your Company Address].'),
           ],
         ),
       ),

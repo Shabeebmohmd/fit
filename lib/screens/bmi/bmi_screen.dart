@@ -23,61 +23,66 @@ class _BmiscreenState extends State<Bmiscreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 199, 205, 235),
       appBar: const CustomAppBar(title: 'BMI CALCULATOR'),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  height(),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  weight(),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: calculatebutton(),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  width: 330,
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _heightcontroller.text = '';
-                          _weightcontroller.text = '';
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(17)),
-                          foregroundColor: Colors.white),
-                      child: const Text(
-                        'Recalculate BMI',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      )),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    height(),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    weight(),
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: result(),
-              ),
-              const SizedBox(height: 20),
-              _dietPlanButton(context),
-              const SizedBox(
-                height: 20,
-              ),
-              _bmiHistoryButton(context)
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: calculatebutton(),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 10),
+                //   child: SizedBox(
+                //     width: 330,
+                //     height: 50,
+                //     child: ElevatedButton(
+                //         onPressed: () {
+                //           setState(() {
+                //             _heightcontroller.text = '';
+                //             _weightcontroller.text = '';
+                //           });
+                //         },
+                //         style: ElevatedButton.styleFrom(
+                //             backgroundColor: Colors.amber,
+                //             shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(17)),
+                //             foregroundColor: Colors.white),
+                //         child: const Text(
+                //           'Recalculate BMI',
+                //           style: TextStyle(
+                //               fontWeight: FontWeight.bold, fontSize: 20),
+                //         )),
+                //   ),
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: result(),
+                ),
+                const SizedBox(height: 20),
+                _dietPlanButton(context),
+                const SizedBox(
+                  height: 20,
+                ),
+                _bmiHistoryButton(context)
+              ],
+            ),
           ),
         ),
       ),
@@ -189,10 +194,13 @@ class _BmiscreenState extends State<Bmiscreen> {
       height: 159,
       child: Column(
         children: [
-          const Text(
-            'Weight (kg)',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: const Text(
+              'Weight',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 32, right: 32),
@@ -219,10 +227,13 @@ class _BmiscreenState extends State<Bmiscreen> {
       height: 159,
       child: Column(
         children: [
-          const Text(
-            'Height (cm)',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: const Text(
+              'Height',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 32, right: 32),

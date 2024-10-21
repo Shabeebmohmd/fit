@@ -23,11 +23,12 @@ class _AddDietPlanPageState extends State<AddDietPlanPage> {
       _formKey1.currentState!.save();
       await addDietPlan(widget.category, headline, dietplan);
       //  getAllDietPlans(widget.category);
-      log('Workout saved successfully for category:');
+      log('Diet saved successfully for category:');
       // ignore: use_build_context_synchronously
       FocusScope.of(context).unfocus();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Future.delayed(const Duration(milliseconds: 300), () {
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
         });
       });
@@ -38,73 +39,92 @@ class _AddDietPlanPageState extends State<AddDietPlanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorss.backgroundColor,
-      appBar: AppBar(title: Text('Add Diet Plan for ${widget.category}')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Form(
-                  key: _formKey1,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        onSaved: (value) => headline = value!,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Enter a headline';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.grey[100],
-                          labelText: 'Headline',
-                          labelStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 25,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(17),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        onSaved: (value) => dietplan = value!,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Enter diet plan';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.grey[100],
-                          labelText: 'Diet plan',
-                          labelStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 25,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(17),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(title: Text(widget.category)),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/add diet.jpeg'),
+                  fit: BoxFit.cover)),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Form(
+                    key: _formKey1,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          onSaved: (value) => headline = value!,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Enter a time';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            labelText: 'Time. eg: Lunch',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 17,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(17),
+                            ),
                           ),
                         ),
-                        maxLines: null,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colorss.buttonColor,
-                            foregroundColor: Colors.white),
-                        onPressed: saveWorkoutDietPlan,
-                        child: const Text('Add Diet Plan'),
-                      ),
-                    ],
-                  )),
-            ],
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          onSaved: (value) => dietplan = value!,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Enter diet plan';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            labelText: 'Diet plan',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 17,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(17),
+                            ),
+                          ),
+                          maxLines: null,
+                        ),
+                        const SizedBox(height: 25),
+                        SizedBox(
+                          height: 50,
+                          width: 150,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colorss.buttonColor,
+                                foregroundColor: Colors.white),
+                            onPressed: saveWorkoutDietPlan,
+                            child: const Text(
+                              'Save',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
       ),
