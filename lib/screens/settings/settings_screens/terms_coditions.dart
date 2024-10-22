@@ -14,7 +14,7 @@ class TermsCoditions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Terms and Conditions for FIT FUSION',
+              'Terms and Conditions for FIT PARTNER',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
@@ -32,15 +32,15 @@ class TermsCoditions extends StatelessWidget {
               '  - Transmit any material that is unlawful, fraudulent, or harmful.\n'
               '  - Attempt to gain unauthorized access to the Service or its related systems or networks.\n\n'
               '4. Content and Intellectual Property\n'
-              '- All content provided in the Service, including text, graphics, logos, images, and software, is the property of Fit Fusion or its licensors and is protected by copyright, trademark, and other intellectual property laws.\n'
+              '- All content provided in the Service, including text, graphics, logos, images, and software, is the property of Fit Partner or its licensors and is protected by copyright, trademark, and other intellectual property laws.\n'
               '- You may not reproduce, distribute, modify, or create derivative works of any content from the Service without our prior written consent.\n\n'
               '5. Health Disclaimer\n'
               '- The Service is intended for informational and educational purposes only and should not be considered medical advice. Always consult a qualified healthcare provider before starting any new fitness or diet program.\n'
-              '- Fit Fusion is not responsible for any injuries or health issues that may arise from your use of the Service.\n\n'
+              '- Fit Partneris not responsible for any injuries or health issues that may arise from your use of the Service.\n\n'
               '6. Limitation of Liability\n'
-              '- To the fullest extent permitted by law, Fit Fusion shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits or goodwill, arising out of or related to your use of the Service.\n\n'
+              '- To the fullest extent permitted by law, Fit Partner shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits or goodwill, arising out of or related to your use of the Service.\n\n'
               '7. Indemnification\n'
-              'You agree to defend, indemnify, and hold harmless Fit Fusion, its affiliates, and their respective officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney\'s fees) arising from your use of the Service or violation of these Terms.\n\n'
+              'You agree to defend, indemnify, and hold harmless Fit Partner, its affiliates, and their respective officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney\'s fees) arising from your use of the Service or violation of these Terms.\n\n'
               '8. Governing Law\n'
               'These Terms shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.\n\n',
               style: TextStyle(fontSize: 16),

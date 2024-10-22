@@ -17,13 +17,13 @@ class Settingsscreen extends StatefulWidget {
 class _SettingsscreenState extends State<Settingsscreen> {
   _listTile(
       {required String title,
-      required String iconPath,
+      required IconData icon,
       required VoidCallback onTap,
       bool showDivider = true}) {
     return Column(
       children: [
         ListTile(
-          leading: Image.asset(iconPath, height: 30),
+          leading: Icon(icon, size: 30),
           title: Text(title, style: const TextStyle(fontSize: 23)),
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
           onTap: onTap,
@@ -52,13 +52,13 @@ class _SettingsscreenState extends State<Settingsscreen> {
               children: [
                 _listTile(
                   title: 'Profile',
-                  iconPath: 'assets/icons/profile.png',
+                  icon: Icons.person,
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Profile())),
                 ),
                 _listTile(
                   title: 'Add workouts & Diet',
-                  iconPath: 'assets/icons/user.png',
+                  icon: Icons.fitness_center,
                   onTap: () => showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -95,14 +95,14 @@ class _SettingsscreenState extends State<Settingsscreen> {
                 ),
                 _listTile(
                     title: 'Privacy policy',
-                    iconPath: 'assets/icons/privacy.png',
+                    icon: Icons.privacy_tip,
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const PrivacyScreen()))),
                 _listTile(
                   title: 'Terms & conditions',
-                  iconPath: 'assets/icons/terms-and-conditions.png',
+                  icon: Icons.description,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -110,7 +110,7 @@ class _SettingsscreenState extends State<Settingsscreen> {
                 ),
                 _listTile(
                     title: 'About us',
-                    iconPath: 'assets/icons/information.png',
+                    icon: Icons.info,
                     showDivider: false,
                     onTap: () => Navigator.push(
                         context,

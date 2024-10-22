@@ -27,7 +27,7 @@ class Aboutscreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        'Welcome to Fit Fusion, your ultimate companion for achieving fitness goals from the comfort of your home. Our mission is to empower individuals to lead healthier and more active lives by providing a comprehensive and accessible workout platform.\n\n',
+                        'Welcome to Fit Partner, your ultimate companion for achieving fitness goals from the comfort of your home. Our mission is to empower individuals to lead healthier and more active lives by providing a comprehensive and accessible workout platform.\n\n',
                     style: TextStyle(color: Colors.black),
                   ),
                   TextSpan(
@@ -40,7 +40,7 @@ class Aboutscreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        'We believe that everyone deserves access to quality fitness resources, regardless of location or lifestyle. Whether you\'re a beginner looking to start your fitness journey or an experienced athlete aiming to maintain your routine, Fit Fusion is designed to meet your needs.\n\n',
+                        'We believe that everyone deserves access to quality fitness resources, regardless of location or lifestyle. Whether you\'re a beginner looking to start your fitness journey or an experienced athlete aiming to maintain your routine, Fit Partner is designed to meet your needs.\n\n',
                     style: TextStyle(color: Colors.black),
                   ),
                   TextSpan(
@@ -68,12 +68,12 @@ class Aboutscreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        'At Fit Fusion, we are committed to continuously improving our app to better serve our community. We are passionate about fitness and dedicated to helping you reach your goals. Your success is our success.\n\n',
+                        'At Fit Partner, we are committed to continuously improving our app to better serve our community. We are passionate about fitness and dedicated to helping you reach your goals. Your success is our success.\n\n',
                     style: TextStyle(color: Colors.black),
                   ),
                   TextSpan(
                     text:
-                        'Thank you for choosing Fit Fusion. Let\'s get stronger together!',
+                        'Thank you for choosing Fit Partner. Let\'s get stronger together!',
                     style: TextStyle(color: Colors.black),
                   ),
                 ],

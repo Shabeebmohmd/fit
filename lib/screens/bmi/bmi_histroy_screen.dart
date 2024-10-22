@@ -21,7 +21,11 @@ class BmiHistroyScreen extends StatelessWidget {
             valueListenable: bmiNotifier,
             builder: (context, List<BmiModel> bmi, _) {
               if (bmi.isEmpty) {
-                return const Center(child: Text('No history found'));
+                return const Center(
+                    child: Text(
+                  'No history found',
+                  style: TextStyle(color: Colors.white),
+                ));
               } else {
                 return ListView.builder(
                     itemCount: bmi.length,
